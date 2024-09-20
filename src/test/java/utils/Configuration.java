@@ -9,10 +9,15 @@ public class Configuration {
     protected static WebDriver driver = new ChromeDriver();
     @BeforeMethod
     public void setUp(){
-        driver = new ChromeDriver();
+        if(driver == null){
+            driver = new ChromeDriver();
+        }
     }
     @AfterMethod
     public void closeBrowser(){
-        driver.close();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

@@ -3,6 +3,8 @@ package steps;
 import components.FormPlaceOrderComponent;
 import components.HeaderComponent;
 import helper.GenerateData;
+import io.cucumber.java.AfterAll;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pages.CartPage;
 import pages.HomePage;
@@ -10,10 +12,12 @@ import pages.ProductDetailPage;
 import utils.Configuration;
 
 public class PurchaseProduct extends Configuration {
+
     @BeforeClass
     public void con(){
         super.setUp();
     }
+
     private String titleProduct;
     private String url = "https://www.demoblaze.com/index.html";
     private HomePage homePage;
@@ -23,9 +27,8 @@ public class PurchaseProduct extends Configuration {
     private FormPlaceOrderComponent formPlaceOrderComponent;
     private GenerateData generateData = new GenerateData();
     public PurchaseProduct(){
-        this.titleProduct = "";
         this.homePage = new HomePage(driver);
-        this.productDetailPage = new ProductDetailPage(driver,this.titleProduct);
+        this.productDetailPage = new ProductDetailPage(driver);
         this.cartPage = new CartPage(driver);
         this.headerComponent = new HeaderComponent(driver);
         this.formPlaceOrderComponent = new FormPlaceOrderComponent(driver);
@@ -38,7 +41,7 @@ public class PurchaseProduct extends Configuration {
         this.titleProduct = this.homePage.clickRandomItem();
     }
     public void addToCart(){
-        this.productDetailPage.assertElement();
+        this.productDetailPage.assertElement(this.titleProduct);
         this.productDetailPage.clickButtonAddProduct();
         this.productDetailPage.clickAlert();
     }
@@ -60,8 +63,13 @@ public class PurchaseProduct extends Configuration {
         this.formPlaceOrderComponent.fillCreditCard(creditCard);
         this.formPlaceOrderComponent.fillMonth("November");
         this.formPlaceOrderComponent.fillYear("2021");
+        this.formPlaceOrderComponent.clickPurchase();
     }
     public void validateAlert() throws InterruptedException {
         this.formPlaceOrderComponent.alertPresent();
+    }
+    @AfterClass
+    public void close(){
+        driver.quit();
     }
 }

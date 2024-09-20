@@ -12,3 +12,5 @@ Feature: The user the purchase the product
     Examples:
       | category |
       | Phones   |
+      | Laptops  |
+      | Monitors |

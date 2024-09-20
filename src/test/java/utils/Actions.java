@@ -51,14 +51,15 @@ public class Actions {
     }
 
     public String clickRandomElement(String typeLocation, String locator) {
-        List<WebElement> elements = this.driver.findElements(this.locationElement(typeLocation, locator));
-        Random random = new Random();
+        List<WebElement> elements = this.wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(this.locationElement(typeLocation, locator)));
         if (elements.isEmpty()) {
             throw new IllegalArgumentException("No elements found for the given locator: "+elements+""+locator);
         }
+        Random random = new Random();
         int index = random.nextInt(elements.size());
         WebElement element = elements.get(index);
         String text = element.getText();
+        System.out.println("This is the text: "+text);
         element.click();
         return text;
     }
@@ -70,6 +71,7 @@ public class Actions {
     }
 
     public void clickAlert() {
+        this.wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = this.driver.switchTo().alert();
         alert.accept();
     }
@@ -79,7 +81,7 @@ public class Actions {
             this.wait.until(ExpectedConditions.visibilityOfElementLocated(this.locationElement(typeLocation, locator)));
             return this.driver.findElement(this.locationElement(typeLocation, locator)).isDisplayed();
         } catch (TimeoutException e) {
-            return false; // El elemento no es visible en el tiempo especificado
+            return false;
         }
     }
 }
