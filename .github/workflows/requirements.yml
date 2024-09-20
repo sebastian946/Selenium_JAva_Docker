@@ -20,7 +20,7 @@ jobs:
             java-version: '21'
             distribution: 'temurin'
         - name: Install dependencies maven
-          run: mvn clean install
+          run: mvn clean install -DskipTests
         - name: Run test
           run: mvn test
 
