@@ -7,6 +7,9 @@ import steps.PurchaseProduct;
 
 public class PurchaseProductStepDefinitions {
     PurchaseProduct purchaseProduct = new PurchaseProduct();
+    public PurchaseProductStepDefinitions(){
+
+    }
     @Given("user open the webpage product store")
     public void user_open_the_webpage_product_store(){
         purchaseProduct.openUrl();
