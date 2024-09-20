@@ -13,11 +13,10 @@ jobs:
       steps:
         - name: Checkout code
           run: actions/checkout@2
-        - name: JDK configuration
+        - name: Set up JDK 17
           run: actions/setup-java@1
           with:
-            java-version: '11'
-
+            java-version: '17'
         - name: Install depencies maven
           run: mvn clean install
         - name: Run test
