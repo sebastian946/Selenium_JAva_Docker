@@ -146,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726847534616</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Last Configuration&#10;And pipelines config V2&#10;Headless cofiguration">
+      <option name="closed" value="true" />
+      <created>1726847642167</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726847642167</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
