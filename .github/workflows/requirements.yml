@@ -11,6 +11,13 @@ jobs:
       timeout-minutes: 60
       runs-on: ubuntu-latest
       steps:
+        - name: Checkout code
+          run: actions/checkout@2
+        - name: JDK configuration
+          run: actions/setup-java@1
+          with:
+            java-version: '11'
+
         - name: Install depencies maven
           run: mvn clean install
         - name: Run test
